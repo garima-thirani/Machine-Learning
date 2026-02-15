@@ -74,9 +74,7 @@ st.download_button(
 
 st.divider()
 
-# Selected Model Display
-st.markdown(f"#### 🤖 Selected Model: **{model_name.replace('_',' ').title()}**")
-st.divider()
+
 
 
 # Load Model
@@ -87,6 +85,9 @@ target_col = "default.payment.next.month"
 
 # Main Workflow
 if uploaded_file:
+    # Selected Model Display
+    st.markdown(f"#### ⚙️ Selected Model: **{model_name.replace('_',' ').title()}**")
+    st.divider()
 
     data = pd.read_csv(uploaded_file)
 
