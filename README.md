@@ -67,8 +67,8 @@ Ensemble models significantly outperformed individual models on this dataset.
 
 ---
 
-## Streamlit Application Features
-
+## Streamlit Application Link And Features
+- Link : https://credit-card-default-prediction-ml-model.streamlit.app/
 - Upload custom CSV test data  
 - Download sample dataset  
 - Model selection from multiple trained models  
