@@ -46,7 +46,7 @@ st.divider()
 # Sidebar (User Flow)
 st.sidebar.header("🔧 Controls")
 
-model_name = st.sidebar.selectbox(
+selected_model_name = st.sidebar.selectbox(
     "Step 1: Select Model",
     ["logistic", "decision_tree", "knn", "naive_bayes", "random_forest", "xgboost"]
 )
@@ -78,7 +78,7 @@ st.divider()
 
 
 # Load Model
-model = joblib.load(f"model/{model_name}.pkl")
+model = joblib.load(f"model/{selected_model_name}.pkl")
 scaler = joblib.load("model/scaler.pkl")
 target_col = "default.payment.next.month"
 
@@ -86,7 +86,7 @@ target_col = "default.payment.next.month"
 # Main Workflow
 if uploaded_file:
     # Selected Model Display
-    st.markdown(f"#### ⚙️ Selected Model: **{model_name.replace('_',' ').title()}**")
+    st.markdown(f"#### ⚙️ Selected Model: **{selected_model_name.replace('_',' ').title()}**")
     st.divider()
 
     data = pd.read_csv(uploaded_file)
@@ -103,10 +103,10 @@ if uploaded_file:
         X = data
 
     # Scaling for required models
-    if model_name in ["logistic", "knn", "naive_bayes"]:
+    if selected_model_name in ["logistic", "knn", "naive_bayes"]:
         X = scaler.transform(X)
 
-    preds = model.predict(X)
+    model_predictions = model.predict(X)
 
     
     # Prediction Summary
@@ -115,8 +115,8 @@ if uploaded_file:
     pred_counts = pd.DataFrame({
         "Class": [0, 1],
         "Count": [
-            (preds == 0).sum(),
-            (preds == 1).sum()
+            (model_predictions == 0).sum(),
+            (model_predictions == 1).sum()
         ]
     })
 
@@ -136,7 +136,7 @@ if uploaded_file:
         else:
             auc = None
 
-        metrics_df = pd.DataFrame({
+        metric_evaluation_table = pd.DataFrame({
             "Metric": [
                 "Accuracy",
                 "Precision",
@@ -146,22 +146,22 @@ if uploaded_file:
                 "AUC"
             ],
             "Value": [
-                round(accuracy_score(y_true, preds), 4),
-                round(precision_score(y_true, preds), 4),
-                round(recall_score(y_true, preds), 4),
-                round(f1_score(y_true, preds), 4),
-                round(matthews_corrcoef(y_true, preds), 4),
+                round(accuracy_score(y_true, model_predictions), 4),
+                round(precision_score(y_true, model_predictions), 4),
+                round(recall_score(y_true, model_predictions), 4),
+                round(f1_score(y_true, model_predictions), 4),
+                round(matthews_corrcoef(y_true, model_predictions), 4),
                 round(auc, 4) if auc else "N/A"
             ]
         })
 
-        st.table(metrics_df)
+        st.table(metric_evaluation_table)
 
         
         # Confusion Matrix Table
         st.subheader("📉 Confusion Matrix")
 
-        cm = confusion_matrix(y_true, preds)
+        cm = confusion_matrix(y_true, model_predictions)
         cm_df = pd.DataFrame(
             cm,
             columns=["Predicted 0", "Predicted 1"],
@@ -174,7 +174,7 @@ if uploaded_file:
         # Classification Report Table
         st.subheader("📄 Classification Report")
 
-        report_dict = classification_report(y_true, preds, output_dict=True)
+        report_dict = classification_report(y_true, model_predictions, output_dict=True)
         report_df = pd.DataFrame(report_dict).transpose()
 
         # Round values for cleaner display

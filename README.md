@@ -38,12 +38,12 @@ The following machine learning classification models were implemented:
 
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 Score | MCC |
 |--------------|---------|-----|----------|--------|---------|-----|
-| Logistic Regression | 0.81 | 0.77 | 0.68 | 0.36 | 0.47 | 0.39 |
-| Decision Tree | 0.73 | 0.66 | 0.45 | 0.45 | 0.45 | 0.28 |
-| kNN | 0.78 | 0.70 | 0.55 | 0.30 | 0.39 | 0.30 |
-| Naive Bayes | 0.76 | 0.71 | 0.50 | 0.38 | 0.43 | 0.31 |
-| Random Forest (Ensemble) | 0.82 | 0.80 | 0.69 | 0.40 | 0.50 | 0.43 |
-| XGBoost (Ensemble) | **0.83** | **0.82** | **0.70** | **0.42** | **0.52** | **0.46** |
+| Logistic Regression | 0.8077 | 0.7076 | 0.6868 | 0.2396 | 0.3553 | 0.3244 |
+| Decision Tree | 0.7195 | 0.6091 | 0.3766 | 0.4092 | 0.3922 | 0.2106 |
+| kNN | 0.7928 | 0.7013 | 0.5487 | 0.3564 | 0.4322 | 0.3233 |
+| Naive Bayes | 0.7525 | 0.7249 | 0.4515 | 0.5539 | 0.4975 | 0.3386 |
+| Random Forest (Ensemble) | 0.8112 | 0.7526 | 0.6270 | 0.3610 | 0.4582 | 0.3735 |
+| XGBoost (Ensemble) | **0.8117** | **0.7582** | **0.6274** | **0.3655** | **0.4619** | **0.3764** |
 
 ---
 
@@ -51,21 +51,20 @@ The following machine learning classification models were implemented:
 
 | ML Model Name | Observation |
 |--------------|------------|
-| Logistic Regression | Provides a strong baseline performance but struggles with recall due to class imbalance. |
-| Decision Tree | Shows lower generalization and tends to overfit the training data, resulting in lower AUC and MCC. |
-| kNN | Performance is moderate and sensitive to feature scaling and class distribution. |
-| Naive Bayes | Fast and simple model, but independence assumptions limit its predictive performance. |
-| Random Forest (Ensemble) | Provides improved stability and better overall performance compared to individual models. |
-| XGBoost (Ensemble) | Achieves the best performance across most metrics, making it the most effective model for this dataset. |
+| Logistic Regression | Acts as a baseline model with good precision, but recall is low, indicating difficulty in identifying default cases. |
+| Decision Tree | Shows lower overall performance and generalization ability, with the lowest AUC and MCC among all models. |
+| kNN | Provides moderate performance but is sensitive to feature scaling and data distribution. |
+| Naive Bayes | Achieves higher recall compared to other models, but overall accuracy is moderate due to its strong independence assumptions. |
+| Random Forest (Ensemble) | Improves overall stability and performance compared to individual models, with better balance between precision and recall. |
+| XGBoost (Ensemble) | Achieves the best overall performance across most metrics, indicating its effectiveness in capturing complex patterns in the dataset. |
 
 ---
 
 ## Conclusion
 
-Ensemble models significantly outperformed individual models on this dataset.  
-**XGBoost** achieved the highest performance in terms of Accuracy, AUC, F1 Score, and MCC, demonstrating its ability to capture complex patterns and handle class imbalance effectively.
+Ensemble models (Random Forest and XGBoost) performed better than individual models.  
+**XGBoost achieved the highest AUC and MCC**, making it the most effective model for predicting credit card default in this study.
 
----
 
 ## Streamlit Application Link And Features
 - Link : https://credit-card-default-prediction-ml-model.streamlit.app/
