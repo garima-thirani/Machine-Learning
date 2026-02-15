@@ -36,11 +36,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Scaling
-scale = StandardScaler()
-X_train_scale1 = scale.fit_transform(X_train)
-X_test_scaled1 = scale.transform(X_test)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
-joblib.dump(scale, "model/scale.pkl")
+joblib.dump(scaler, "model/scaler.pkl")
 
 # MODELS
 models = {
