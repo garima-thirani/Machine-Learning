@@ -7,17 +7,19 @@ The objective of this project is to predict whether a credit card customer will 
 
 ## Dataset Description
 
-- **Dataset Name:** UCI Credit Card Default Dataset  
-- **Source:** UCI Machine Learning Repository  
+- **Dataset Name:** Default of Credit Card Clients  
+- **Source:** UCI Machine Learning Repository (via Kaggle)  
+- **Dataset Link:** https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset  
 - **Number of Instances:** 30,000  
-- **Number of Features:** 23  
-- **Target Variable:** `default_payment_next_month`  
+- **Number of Features:** 23 (excluding ID)  
+- **Target Variable:** `default.payment.next.month`  
   - 0 = No Default  
   - 1 = Default  
 
-The dataset contains customer demographic details, credit limits, past payment history, and billing information.
+The dataset contains customer demographic details, credit limit information, repayment history for the last six months, bill statements, and previous payment amounts.
 
----
+**Note:** The complete dataset was used for model training locally. A sample test dataset is included in this repository for demonstration and Streamlit application usage.
+
 
 ## Models Implemented
 
